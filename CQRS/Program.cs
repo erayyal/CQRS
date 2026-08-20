@@ -1,4 +1,3 @@
-using AutoMapper;
 using CQRS.Mapper;
 using CQRS.Repositories;
 using MediatR;
@@ -11,11 +10,10 @@ builder.Services.AddSingleton<IProductRepository, ProductRepository>();
 builder.Services.AddControllers();
 
 #region Automapper register
-var config = new MapperConfiguration(conf =>
+builder.Services.AddAutoMapper(conf =>
 {
     conf.AddProfile<RegisterMapper>();
 });
-builder.Services.AddScoped(s => config.CreateMapper());
 
 #endregion
 builder.Services.AddEndpointsApiExplorer();
